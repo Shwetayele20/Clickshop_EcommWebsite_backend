@@ -11,7 +11,7 @@ function Login({ setUser }) {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-    const role = form.email.includes("admin") ? "admin" : "customer"; 
+    const role = form.email.includes("admin") ? "admin" : "user"; 
     const userData = { email: form.email, role };
     setUser(userData);
     // if (role === "admin") navigate("/admin/add-product");
@@ -24,6 +24,8 @@ function Login({ setUser }) {
     const password = data.get("password");
     
 
+console.log('User Name:', email);
+console.log('Email:', password);
 
     try {
   // Call the backend API
