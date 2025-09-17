@@ -29,7 +29,7 @@ const PORT = process.env.PORT;
 async function dbConnection() {
   try {
     await db.authenticate();  // test DB connection
-    await db.sync({ alter: false });          // create tables if not exist (based on models)
+    await db.sync({ force: false });          // create tables if not exist (based on models)
     app.listen(PORT, () => console.log(`Server http://localhost:${PORT}`));
   } catch (err) {
     console.error('Failed to start server:', err);

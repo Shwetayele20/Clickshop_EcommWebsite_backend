@@ -12,3 +12,4 @@ router.get('/profile' , getUserProfile);
 router.get('/all' , authMiddleware, authorizeRoles(['admin']), getAllUsers);
 
 module.exports = router;
+
