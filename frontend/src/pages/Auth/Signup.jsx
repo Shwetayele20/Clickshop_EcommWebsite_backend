@@ -18,7 +18,7 @@ import { useState } from 'react';
 
 export default function Signup() {
 
-const [form, setForm] = useState({ name: "", email: "", password: "", role: "customer" });
+const [form, setForm] = useState({ name: "", email: "", password: "", role: "" });
 
  const navigate = useNavigate();
 
@@ -40,6 +40,7 @@ const [form, setForm] = useState({ name: "", email: "", password: "", role: "cus
     const email = data.get("email");
     const password = data.get("password");
     const phone_no = data.get("phone_no");
+    const role = data.get('role');
 
 
 console.log('User Name:', username);
@@ -52,7 +53,7 @@ try {
   const response = await fetch('http://192.168.2.67:3300/api/auth/register', {
     method : 'POST',
     headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({username , email , password , phone_no})
+    body: JSON.stringify({username , email , password , phone_no, role})
   });
 
   const result = await response.json();
@@ -183,13 +184,14 @@ try {
                 fullWidth
                  select
                  label="Role"
+                 id = 'role'
                  name="role"
                  value={form.role}
                  autoComplete="role"
                  size="small"
                 onChange={handleChange}
                 >
-          <MenuItem value="customer">Customer</MenuItem>
+          <MenuItem value="user">User</MenuItem>
           <MenuItem value="admin">Admin</MenuItem>
         </TextField>
         </Grid>
