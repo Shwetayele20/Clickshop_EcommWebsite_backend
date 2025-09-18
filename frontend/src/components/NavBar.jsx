@@ -163,9 +163,9 @@ function Navbar({ user }) {
                 <MenuItem component={Link} to="/login" onClick={handleMenuClose}>
                   Login
                 </MenuItem>
-                <MenuItem component={Link} to="/signup" onClick={handleMenuClose}>
+                {/* <MenuItem component={Link} to="/signup" onClick={handleMenuClose}>
                   Signup
-                </MenuItem>
+                </MenuItem> */}
               </>
             ) : (
               <MenuItem onClick={() => { handleLogout(); handleMenuClose(); }}>

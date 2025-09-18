@@ -1,16 +1,38 @@
 // src/pages/Login.jsx
 import React, { useState } from "react";
-import { Container, TextField, Button, Typography, Box } from "@mui/material";
+import CssBaseline from '@mui/material/CssBaseline';
+import {
+  Avatar,
+  Container, 
+  TextField, 
+  Button, 
+  Typography, 
+  Box ,
+  Link,
+  Paper,
+  Grid,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+
 
 function Login({ setUser }) {
   const [form, setForm] = useState({ email: "", password: "" });
+
+  const handleSignUpRedirect = (e) => {
+    e.preventDefault();                         
+    navigate('/signup');                      
+  };
+
   const navigate = useNavigate();
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async(e) => {                                      
     e.preventDefault();
+    console.log("Login Data:", form );
+
+
     const role = form.email.includes("admin") ? "admin" : "user"; 
     const userData = { email: form.email, role };
     setUser(userData);
@@ -55,43 +77,109 @@ console.log('Email:', password);
 
 
   return (
-    <Container maxWidth="sm" sx={{ mt: 5 }}>
+    <Container maxWidth="sm" component="main">
+      <CssBaseline />
+      <Paper
+        elevation={6}
+        sx={{
+          mx: {xs :3, sm : 4 , md : 5},
+          my: {xs:1, sm:2, md: 3},
+          px: { xs: 3, sm: 4, md: 5 }, // responsive padding
+          py:{ xs: 1, sm: 2, md: 3 },
+          borderRadius: 3,
+          width :"70%",
+           position: "relative",
+          overflow: "hidden",
+         
+        }}
+      >
+            <Box
+                sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    
+                  }}
+                >
+      {/* Login Form */}
+
+      <Box  sx={{display:"flex"}}>
       <Typography 
       variant="h4" 
       mb={3}>
         Login
       </Typography>
 
+     <Avatar sx={{ p:1, bgcolor: "primary.main" }}>
+        <AccountCircleIcon />    
+      </Avatar> 
+      </Box>
+    
+
       <Box 
       component="form" 
       onSubmit={handleSubmit} 
-      sx={{ display: "flex", 
-      flexDirection: "column", 
-      gap: 2 }}>
+      sx={{ mt : 1}}
+      >
+    <Grid container spacing = {2}>
 
+      {/* Email  */}
+      <Grid size = {{xs:12}}>
         <TextField 
+        required
+        fullWidth
+        size="small"
         label="Email" 
         name="email" 
         id="email"
         value={form.email} 
         onChange={handleChange} 
-        required />
+         />
+        </Grid>
 
+        {/* Password  */}
+
+        <Grid size = {{xs:12}}>
         <TextField 
+        fullWidth
+        required
+        size="small"
         label="Password" 
         type="password" 
         id="password"
         name="password" 
         value={form.password} 
         onChange={handleChange} 
-        required />
+         />
+        </Grid>
+      </Grid>
 
         <Button 
+        fullWidth
         variant="contained" 
-        type="submit">
-        Login</Button>
+        type="submit"
+        size="small"
+         sx={{ mt: 1,  mb: 1,  py: 1.5 }}
+        >
+        Login
+        </Button>
+
+        {/* Footer Links */}
+            <Grid container justifyContent="center">
+              <Grid item>
+                <Link 
+                href = "#" 
+                variant = "body2"
+                onClick = {handleSignUpRedirect}
+                >
+                  Don't have an account? Sign up 
+                </Link>
+              </Grid>
+            </Grid>
+          </Box>
       </Box>
-    </Container>
+    </Paper>
+  </Container>
   );
 }
 

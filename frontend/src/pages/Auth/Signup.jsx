@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
-// import NavBar from "../../components/NavBar";
+
 import {
   Avatar,
   Button,
@@ -13,23 +13,20 @@ import {
   Typography,
   Container,
   Paper,
-} from "@mui/material";
+} from "@mui/material"
 import { useState } from 'react';
 
 export default function Signup() {
 
-const [form, setForm] = useState({ name: "", email: "", password: "", role: "" });
-
+const [form, setForm] = useState({ name: "", email:"", password: "", phone_no:"", role:" " });
  const navigate = useNavigate();
-
  const handleLoginRedirect = (e) => {
     e.preventDefault();                         
     navigate('/login');                      
   };
 
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
-
- const handleSubmit = async(event) => {
+const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+const handleSubmit = async(event) => {
     event.preventDefault();
     console.log("Signup Data:", form);
   
@@ -114,6 +111,7 @@ try {
           </Typography>   
           </Avatar> 
           </Box>
+
           <Box
             component="form"
             noValidate
@@ -195,9 +193,7 @@ try {
           <MenuItem value="admin">Admin</MenuItem>
         </TextField>
         </Grid>
-               
-               
-            </Grid>
+       </Grid>
             {/* Submit Button */}
             <Button
               type="submit"
@@ -228,59 +224,3 @@ try {
     </>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // src/pages/Signup.jsx
-// import React, { useState } from "react";
-// import { Container, TextField, Button, Typography, MenuItem, Box } from "@mui/material";
-// import { useNavigate } from "react-router-dom";
-
-// function Signup() {
-//   const [form, setForm] = useState({ name: "", email: "", password: "", role: "customer" });
-//   const navigate = useNavigate();
-
-//   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     console.log("Signup Data:", form);
-//     navigate("/login");
-//   };
-
-//   return (
-//     <Container maxWidth="sm" sx={{ mt: 5 }}>
-//       <Typography variant="h4" mb={3}>Signup</Typography>
-//       <Box component="form" onSubmit={handleSubmit} sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-//         <TextField label="Name" name="name" value={form.name} onChange={handleChange} required />
-//         <TextField label="Email" name="email" value={form.email} onChange={handleChange} required />
-//         <TextField label="Password" type="password" name="password" value={form.password} onChange={handleChange} required />
-//         <TextField
-//           select
-//           label="Role"
-//           name="role"
-//           value={form.role}
-//           onChange={handleChange}
-//         >
-//           <MenuItem value="customer">Customer</MenuItem>
-//           <MenuItem value="admin">Admin</MenuItem>
-//         </TextField>
-//         <Button variant="contained" type="submit">Signup</Button>
-//       </Box>
-//     </Container>
-//   );
-// }
-
-// export default Signup;
