@@ -14,8 +14,8 @@ function Login({ setUser }) {
     const role = form.email.includes("admin") ? "admin" : "user"; 
     const userData = { email: form.email, role };
     setUser(userData);
-    // if (role === "admin") navigate("/admin/add-product");
-    // else navigate("/products");
+    if (role === "admin") navigate("/admin/add-product");
+    else navigate("/products");
 
 
        // Get Form data
