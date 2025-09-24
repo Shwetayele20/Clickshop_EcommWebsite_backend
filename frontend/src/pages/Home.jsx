@@ -21,14 +21,14 @@ function Home() {
     }} >
     <Container maxWidth="lg"  disableGutters sx={{ width: "100vw" }} >
       <Categories />
-      {/* <ImageSlider />  */}
-      {/* <BrandSection /> */}
-      {/* <ExploreSection /> */}
+      <ImageSlider /> 
+      <BrandSection />
+      <ExploreSection />
     
     </Container>
   </Box>
   
-    {/* <Contact /> */}
+    <Contact />
   </>
   );
 }
