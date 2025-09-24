@@ -16,7 +16,6 @@ import SearchIcon from "@mui/icons-material/Search";
 import { Link, useNavigate } from "react-router-dom";
 import HomeIcon from '@mui/icons-material/Home';
 import LoginIcon from '@mui/icons-material/Login';
-import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 
 
 function Navbar({ user }) {
@@ -32,7 +31,15 @@ function Navbar({ user }) {
   };
 
   return (
-    <AppBar position="sticky" color="black" backgroundColor ="white" >
+    <AppBar 
+    position="sticky" 
+     sx={{
+    backgroundColor: "white",
+    color: "black",
+    boxShadow: 2, // adds subtle shadow
+    zIndex: (theme) => theme.zIndex.drawer + 1 // keeps it above content
+  }}
+     >
       <Toolbar sx={{ display:'flex', alignItems:'center', justifyContent:{sm:'space-between', md:'center'}}}>
         <Box sx={{ display: "flex", alignItems: "center", mr: '2rem' }}>
           <img
@@ -61,6 +68,7 @@ function Navbar({ user }) {
             width: "30%",
             px: 2,
             mr:'5rem'
+            
           }}
         >
           <InputBase
@@ -109,9 +117,9 @@ function Navbar({ user }) {
               <Button color="inherit" component={Link} to="/login" startIcon={<LoginIcon />}>
                 Login
               </Button>
-              <Button color="inherit" component={Link} to="/signup" startIcon={<AppRegistrationIcon />}>
+              {/* <Button color="inherit" component={Link} to="/cart" startIcon={<AppRegistrationIcon />}>
                 Signup
-              </Button>
+              </Button> */}
             </>
           ) : (
             <Button color="inherit" onClick={handleLogout}>

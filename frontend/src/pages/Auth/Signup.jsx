@@ -1,6 +1,5 @@
-import React from "react";
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import {
   Avatar,
   Button,
@@ -13,62 +12,63 @@ import {
   Typography,
   Container,
   Paper,
-} from "@mui/material"
-import { useState } from 'react';
+} from "@mui/material";
+
 
 export default function Signup() {
 
-const [form, setForm] = useState({ name: "", email:"", password: "", phone_no:"", role:" " });
  const navigate = useNavigate();
- const handleLoginRedirect = (e) => {
+ const [form, setForm] = useState({ 
+  name: "", 
+  email:"", 
+  password: "", 
+  phone_no:"", 
+  role:" " 
+});
+ 
+const handleLoginRedirect = (e) => {
     e.preventDefault();                         
     navigate('/login');                      
   };
 
 const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+
 const handleSubmit = async(event) => {
     event.preventDefault();
     console.log("Signup Data:", form);
   
 
-    // Get Form data
-    const data = new FormData(event.currentTarget);
-    const username = data.get("username");
-    const email = data.get("email");
-    const password = data.get("password");
-    const phone_no = data.get("phone_no");
-    const role = data.get('role');
+    // // Get Form data
+    // const data = new FormData(event.currentTarget);
+    // const username = data.get("username");
+    // const email = data.get("email");
+    // const password = data.get("password");
+    // const phone_no = data.get("phone_no");
+    // const role = data.get('role');
 
 
-console.log('User Name:', username);
-console.log('Email:', email);
-console.log('Password',password);
-console.log('Mobile:', phone_no);
+// console.log('User Name:', username);
+// console.log('Email:', email);
+// console.log('Password',password);
+// console.log('Mobile:', phone_no);
 
 try {
   // Call the backend API
   const response = await fetch('http://192.168.2.67:3300/api/auth/register', {
     method : 'POST',
     headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({username , email , password , phone_no, role})
+    body: JSON.stringify(form),
   });
 
   const result = await response.json();
+  alert(result?.message || "Unexpected server response");
 
-  if (result && result.message) {
-    alert(result.message);
-  } else {
-    alert("Unexpected server response");
-  }
-
-  if (response.ok) {
-    navigate('/login');
-  }
+  if (response.ok) navigate('/login');
+  
 } catch (error) {
   console.error('Fetch failed:', error);
   alert("Something went wrong! Please check your network or backend.");
 }
-
 };
   return (
     <>

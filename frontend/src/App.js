@@ -52,7 +52,7 @@ function App() {
       <Navbar user={user} />
       <div style={{ display: "flex" }}>
         {user?.role === "admin" && <Sidebar />}
-        <div style={{ flexGrow: 1, padding: "1rem" }}>
+        <div style={{ flexGrow: 1 }}>
           <Routes>
             {/* Public Routes */}
             <Route path="/" element={<Home />} />
