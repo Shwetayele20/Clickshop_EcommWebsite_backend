@@ -3,7 +3,8 @@ require('dotenv').config();
 const app = express();
 const db = require('./config/db');
 const authRoutes = require('./routes/auth/auth.route');
-const userRoutes = require('./routes/auth/users.route');
+const roleRoutes = require('./routes/productRouter')
+const allAddress = require('./routes/addressRoute')
 
 
 const cors = require('cors');
@@ -17,7 +18,9 @@ app.use(cors({
 //middlewares
 app.use(express.json());
 app.use('/api/auth' , authRoutes);
-app.use('/api/user' , userRoutes)
+app.use('/api/product' , roleRoutes)
+app.use('/api/address' , allAddress)
+
 
 app.get('/',(req , res) =>{
     res.send('API Is Running....');

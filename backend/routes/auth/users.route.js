@@ -1,14 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const authMiddleware = require('../../middlewares/auth/Auth.middleware')
-const authorizeRoles = require('../../middlewares/auth/roleMiddleware')
+const isAuthenticatedUser = require('../../middlewares/auth/Auth.middleware')
+const isAdmin = require('../../middlewares/auth/roleMiddleware')
 
-router.get('/admin',authMiddleware, authorizeRoles(['admin']) , (req, res )=>{
+router.get('/admin',isAuthenticatedUser, isAdmin(['admin']) , (req, res )=>{
     res.send('Admin Dashboard');
-
 });
 
-router.get('/customer', authMiddleware ,authorizeRoles(['user', 'admin']) , (req, res)=>{
+router.get('/customer', isAuthenticatedUser ,isAdmin(['user', 'admin']) , (req, res)=>{
     res.send('User Dashboard')
 })
 

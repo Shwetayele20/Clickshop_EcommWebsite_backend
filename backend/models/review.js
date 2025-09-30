@@ -44,7 +44,7 @@ const Review = sequelize.define('Review', {
         defaultValue : 'positive'
     }
 },{
-    timestamps : true,
+    timestamps : false,
     tableName : 'reviews'
 });
 

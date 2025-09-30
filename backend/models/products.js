@@ -2,7 +2,7 @@ const {DataTypes} = require('sequelize');
 const sequelize = require('../config/db');
 
 const Products = sequelize.define('Products',{
-    id:{
+    prodId:{
         type : DataTypes.INTEGER,
         primaryKey : true,
         autoIncrement:true,
@@ -11,7 +11,6 @@ const Products = sequelize.define('Products',{
     imageurl :{
         type : DataTypes.STRING,
         allowNull : true,
-        validate : {isUrl : true},
         defaultValue :  'https://via.placeholder.com/150',
     },
     title:{
@@ -41,7 +40,7 @@ const Products = sequelize.define('Products',{
         allowNull : false,
         validate :{notEmpty : true},
     },
-    salePrice:{
+    saleprice:{
         type :DataTypes.FLOAT,
         allowNull: true,
         validate:{min: 0 , isFloat : true },

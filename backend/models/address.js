@@ -2,7 +2,7 @@ const {DataTypes} = require('sequelize');
 const sequelize = require ('../config/db');
 
 const Address = sequelize.define('Address' , {
-    id:{
+    addrId:{
         type : DataTypes.INTEGER,
         primaryKey : true,
         autoIncrement : true,
@@ -10,17 +10,16 @@ const Address = sequelize.define('Address' , {
     },
     userId :{
         type : DataTypes.INTEGER,
-        allowNull : false,
         references : {
             model : 'users',
-            key :'id',
+            key :'userId',
             onDelete : 'CASCADE',
             onUpdate : 'CASCADE'
         }
     },
     street:{
         type : DataTypes.STRING(150),
-        allowNull : false,
+        allowNull : true,
         validate:{notEmpty : true }
     },
     city:{
@@ -37,7 +36,6 @@ const Address = sequelize.define('Address' , {
         type : DataTypes.INTEGER(6),
         allowNull : false,
         validate : {notEmpty:true , isNumeric : true , len :[6,6]},
-
     },
     country:{
         type : DataTypes.STRING(100),
@@ -45,9 +43,9 @@ const Address = sequelize.define('Address' , {
         validate :{notEmpty : true}
     },
     phoneNo :{
-        type : DataTypes.INTEGER(10),
+        type : DataTypes.INTEGER(15),
         allowNull : false,
-        validate : {notEmpty : true , isNumeric : true , len:[10,10]}
+        validate : {notEmpty : true , isNumeric : true , len:[10,15]}
     }
 })
-module.exports = Address
+module.exports = Address;
