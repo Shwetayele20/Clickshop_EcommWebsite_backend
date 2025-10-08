@@ -33,7 +33,7 @@ const Address = sequelize.define('Address' , {
         validate : {notEmpty : true}
     },
     pincode:{
-        type : DataTypes.INTEGER(6),
+        type : DataTypes.STRING(6),
         allowNull : false,
         validate : {notEmpty:true , isNumeric : true , len :[6,6]},
     },
@@ -43,7 +43,7 @@ const Address = sequelize.define('Address' , {
         validate :{notEmpty : true}
     },
     phoneNo :{
-        type : DataTypes.INTEGER(15),
+        type : DataTypes.STRING(15),
         allowNull : false,
         validate : {notEmpty : true , isNumeric : true , len:[10,15]}
     }

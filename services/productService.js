@@ -1,8 +1,7 @@
-const { where } = require("sequelize");
 const Product = require("../models/products");
 
-const addProduct = async (productData) => {
-  const product = await Product.create(productData);
+const addProduct = async (productData , userId) => {
+  const product = await Product.create(productData , userId);
   return product;
 };
 

@@ -5,28 +5,29 @@ const db = require('./config/db');
 const authRoutes = require('./routes/auth/auth.route');
 const roleRoutes = require('./routes/productRouter')
 const allAddress = require('./routes/addressRoute')
-
+// const allOrder = require('../backend/routes/orderRoute')
 
 const cors = require('cors');
 
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'https://e-commerce-9v7w.vercel.app/',
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
 //middlewares
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use('/api/auth' , authRoutes);
-app.use('/api/product' , roleRoutes)
-app.use('/api/address' , allAddress)
-
+app.use('/api/product' , roleRoutes);
+app.use('/api/address' , allAddress);
+// app.use('/api/order' , allOrder);
 
 app.get('/',(req , res) =>{
     res.send('API Is Running....');
 
 })
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 
 
 async function dbConnection() {

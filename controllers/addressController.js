@@ -1,13 +1,20 @@
 const addressService = require('../services/addressService');
 const response = require('../utils/response');
 
+
 const addAddress = async(req , res) =>{
      try {
         const userId = req.user.userId;
         const addressData = req.body;
+
+        console.log('Address Data' , addressData);
+        console.log("user id" , userId);
+
         const address = await addressService.addAddress(addressData , userId);
         response.success(res , "Address added successfully" , address)
+        
      } catch (error) {
+        
         response.error(res , error.message)
      }
 }
